@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  devcontainer:
+    image: mcr.microsoft.com/vscode/devcontainers/javascript-node:latest
+    volumes:
+      - ../..:/workspaces:cached
+    network_mode: service:mongodb
+    command: sleep infinity
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb6-data:/data/db
+
+volumes:
+  mongodb6-data:
